@@ -1,0 +1,37 @@
+.layout-wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+}
+
+.layout-container {
+  display: flex;
+  flex: 1;
+  min-height: 0; // IMPORTANTE: Permite que os filhos encolham
+  overflow: hidden;
+}
+
+.sidebar-container {
+  height: 100%;
+  overflow-y: auto;
+}
+
+.main-content {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+  background-color: #f5f6fa;
+  min-height: 100%;
+  transition: margin-left 0.3s ease;
+}
+
+// Opção 1: Se usar sidebar com position absolute/fixed
+.main-content {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+  background-color: #f5f6fa;
+  transition: margin-left 0.3s ease;
+}
