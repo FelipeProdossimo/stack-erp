@@ -41,7 +41,7 @@ This project is intentionally designed as a **long-living codebase**, evolving i
 ---
 
 ## 🗂 Project Structure
-
+```
 stack-erp
 │
 ├── backend/
@@ -60,7 +60,7 @@ stack-erp
 │ └── diagrams/
 │
 └── README.md
-
+```
 
 This structure follows an **API-first approach**, allowing backend and frontend to evolve independently.
 
