@@ -1,134 +1,181 @@
 # 🧱 stack-erp
 
-**Minimal ERP platform built with ASP.NET Core Minimal APIs, PostgreSQL and Angular — following Clean Architecture and high-performance design principles.**
+**Minimal, high-performance ERP platform built with ASP.NET Core Minimal APIs, PostgreSQL, and Angular — following Clean Architecture principles.**
 
 ---
 
 ## 📌 Overview
 
-**stack-erp** é um ERP full-stack moderno, minimalista e de alta performance, criado para demonstrar:
+**stack-erp** is a modern, minimalist full-stack ERP designed to demonstrate:
 
-- Arquitetura limpa e desacoplada  
-- Backend com **ASP.NET Core Minimal APIs**  
-- Frontend **Angular** simples (sem bibliotecas pesadas)  
-- Banco de dados **PostgreSQL**  
-- Boas práticas de código, versionamento e documentação  
-- Estrutura profissional para portfólio
+- Clean, decoupled architecture  
+- Backend built with **ASP.NET Core 8 Minimal APIs**  
+- Lightweight **Angular** frontend (no heavy UI frameworks)  
+- **PostgreSQL** as the primary database  
+- Strong focus on code quality, versioning, and documentation  
+- A professional, scalable structure suitable for portfolio and real-world systems  
+
+This project is intentionally designed as a **long-living codebase**, evolving incrementally with best practices.
 
 ---
 
-## 🚀 Tecnologias Principais
+## 🚀 Tech Stack
 
 ### Backend
-- ASP.NET Core 8 Minimal APIs  
-- Clean Architecture  
+- ASP.NET Core 8 (Minimal APIs)  
+- Clean Architecture (Domain / Application / Infrastructure / API)  
 - PostgreSQL  
-- Dapper / Entity Framework (a escolher)  
+- Dapper and/or Entity Framework Core  
 - FluentValidation  
-- JWT Authentication  
-- Serilog  
-- Docker (opcional)
+- JWT-based Authentication  
+- Serilog (structured logging)  
+- Docker (optional)
 
 ### Frontend
 - Angular  
 - TypeScript  
 - RxJS  
-- ngModel (conforme preferência)  
-- HttpClient
+- ngModel (template-driven forms)  
+- HttpClient  
 
 ---
 
-## 📘 Roadmap (Backlog inicial)
+## 🗂 Project Structure
 
-- [ ] Configurar solução e estrutura inicial (src/ Api / Application / Domain / Infrastructure)  
-- [ ] Criar endpoints base (HealthCheck, Version, Swagger)  
-- [ ] Criar módulo de **Usuários & Autenticação (JWT)**  
-- [ ] Criar módulo de **Empresas**  
-- [ ] Criar módulo de **Produtos**  
-- [ ] Criar módulo de **Pedidos** (Pedido + PedidoItem)  
-- [ ] Criar módulo de **Estoque** (EstoqueMovimento)  
-- [ ] Criar módulo de **Financeiro** (Contas a Receber)  
-- [ ] Criar documentação em `/docs` (ER, decisões arquiteturais)  
-- [ ] Criar frontend Angular (repo separado) e conectar com a API  
-- [ ] Criar testes automatizados (xUnit)  
-- [ ] Docker Compose para API + PostgreSQL
+stack-erp
+│
+├── backend/
+│ └── src/
+│ ├── StackErp.Api
+│ ├── StackErp.Application
+│ ├── StackErp.Domain
+│ └── StackErp.Infrastructure
+│
+├── frontend/
+│ └── stack-erp-web/
+│
+├── docs/
+│ ├── architecture.md
+│ ├── decisions.md
+│ └── diagrams/
+│
+└── README.md
 
----
 
-## 📡 Funcionalidades previstas
-
-- 🔐 Login e autenticação JWT  
-- 👥 Gestão de usuários e permissões (roles básicas)  
-- 🏢 Cadastro de empresas  
-- 📦 Gestão de produtos e catálogo  
-- 🔁 Movimentação de estoque (entrada/saída/ajuste)  
-- 🧾 Pedidos de venda com itens, cálculo de subtotal/desconto/total  
-- 💳 Geração de contas a receber a partir do faturamento  
-- 📊 Dashboard com KPIs simples
+This structure follows an **API-first approach**, allowing backend and frontend to evolve independently.
 
 ---
 
-## 🗃️ Modelo de Dados (resumido)
+## 📘 Roadmap
 
-### Produto
-| Campo | Tipo |
-|-------|------|
+- [ ] Configure solution and base structure  
+- [ ] Base endpoints (HealthCheck, Version, Swagger/OpenAPI)  
+- [ ] **Authentication & Users** module (JWT)  
+- [ ] **Companies** module  
+- [ ] **Products** module  
+- [ ] **Orders** module (Order + OrderItem)  
+- [ ] **Inventory** module (Stock Movements)  
+- [ ] **Financial** module (Accounts Receivable)  
+- [ ] Documentation in `/docs` (ER diagrams, architectural decisions)  
+- [ ] Integrate Angular frontend with API  
+- [ ] Automated tests (xUnit)  
+- [ ] Docker Compose for API + PostgreSQL  
+
+---
+
+## 📡 Planned Features
+
+- 🔐 JWT-based authentication  
+- 👥 User and role management  
+- 🏢 Company registration and management  
+- 📦 Product catalog  
+- 🔁 Inventory movements (inbound / outbound / adjustments)  
+- 🧾 Sales orders with discounts and totals  
+- 💳 Accounts receivable generation from sales  
+- 📊 Simple business KPIs dashboard  
+
+---
+
+## 🗃️ Data Model (Simplified)
+
+### Product
+
+| Field | Type |
+|------|------|
 | id | int |
-| nome | varchar |
-| preco | numeric |
-| estoqueMinimo | int |
-| ativo | bool |
+| name | varchar |
+| price | numeric |
+| minimumStock | int |
+| active | bool |
 
-### Cliente
-| Campo | Tipo |
-|-------|------|
+### Customer
+
+| Field | Type |
+|------|------|
 | id | int |
-| nome | varchar |
-| documento | varchar |
+| name | varchar |
+| document | varchar |
 | email | varchar |
-| telefone | varchar |
+| phone | varchar |
 
-### Pedido
-| Campo | Tipo |
-|-------|------|
+### Order
+
+| Field | Type |
+|------|------|
 | id | int |
-| idCliente | int |
-| data | timestamp |
+| customerId | int |
+| date | timestamp |
 | status | varchar |
-| valorTotal | numeric |
-| desconto | numeric |
+| totalAmount | numeric |
+| discount | numeric |
 
-### PedidoItem
-| Campo | Tipo |
-|-------|------|
-| id | int |
-| idPedido | int |
-| idProduto | int |
-| quantidade | numeric |
-| valorUnitario | numeric |
-| valorTotal | numeric |
+### OrderItem
 
-### EstoqueMovimento
-| Campo | Tipo |
-|-------|------|
+| Field | Type |
+|------|------|
 | id | int |
-| idProduto | int |
-| tipo | varchar |
-| quantidade | numeric |
-| data | timestamp |
+| orderId | int |
+| productId | int |
+| quantity | numeric |
+| unitPrice | numeric |
+| totalPrice | numeric |
 
-### ContaReceber
-| Campo | Tipo |
-|-------|------|
+### InventoryMovement
+
+| Field | Type |
+|------|------|
 | id | int |
-| idPedido | int |
-| parcela | int |
-| valor | numeric |
-| dataVencimento | date |
-| dataPagamento | date |
+| productId | int |
+| type | varchar |
+| quantity | numeric |
+| date | timestamp |
+
+### AccountsReceivable
+
+| Field | Type |
+|------|------|
+| id | int |
+| orderId | int |
+| installment | int |
+| amount | numeric |
+| dueDate | date |
+| paymentDate | date |
 | status | varchar |
 
 ---
 
-## 🛠 Como rodar (instruções iniciais)
-- A definir...
+## 🛠 Running the Project
+
+> Setup instructions will be added as the backend and infrastructure are finalized.
+
+---
+
+## 🎯 Project Goals
+
+This repository is not intended to be a tutorial project.  
+It exists to demonstrate:
+
+- Software architecture decisions  
+- Code organization at scale  
+- Backend-first system design  
+- Readable, maintainable, and testable code  
