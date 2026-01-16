@@ -68,15 +68,18 @@ This structure follows an **API-first approach**, allowing backend and frontend 
 
 ## 📘 Roadmap
 
-- [ ] Configure solution and base structure  
-- [ ] Base endpoints (HealthCheck, Version, Swagger/OpenAPI)  
-- [ ] **Authentication & Users** module (JWT)  
-- [ ] **Companies** module  
-- [ ] **Products** module  
-- [ ] **Orders** module (Order + OrderItem)  
-- [ ] **Inventory** module (Stock Movements)  
-- [ ] **Financial** module (Accounts Receivable)  
-- [ ] Documentation in `/docs` (ER diagrams, architectural decisions)  
+- [x] Configure solution and base structure (Api / Application / Domain / Infrastructure)  
+- [x] Configure ASP.NET Core Minimal API  
+- [x] Configure Entity Framework Core with PostgreSQL  
+- [x] Create database context and initial migration  
+- [ ] Create **Company** use cases (Create / List)  
+- [ ] Expose REST endpoints for Company  
+- [ ] Authentication & Users module (JWT)  
+- [ ] Products module  
+- [ ] Orders module (Order + OrderItem)  
+- [ ] Inventory module (Stock movements)  
+- [ ] Financial module (Accounts receivable)  
+- [ ] Documentation in `/docs` (architecture & decisions)  
 - [ ] Integrate Angular frontend with API  
 - [ ] Automated tests (xUnit)  
 - [ ] Docker Compose for API + PostgreSQL  
@@ -166,7 +169,9 @@ This structure follows an **API-first approach**, allowing backend and frontend 
 
 ## 🛠 Running the Project
 
-> Setup instructions will be added as the backend and infrastructure are finalized.
+### Prerequisites
+- .NET SDK 8+
+- PostgreSQL 15+
 
 ---
 
