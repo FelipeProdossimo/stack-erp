@@ -1,9 +1,16 @@
-﻿using StackErp.Domain.Entities;
-
-namespace StackErp.Application.Companies.Interfaces;
+﻿namespace StackErp.Domain.Companies;
 
 public interface ICompanyRepository
 {
-    Task<Guid> CreateAsync(Company company);
-    Task<Company?> GetByIdAsync(Guid id);
+    Task AddAsync(Company company, CancellationToken cancellationToken = default);
+
+    Task<Company?> GetByIdAsync(
+        Guid id,
+        CancellationToken cancellationToken = default
+    );
+
+    Task<bool> ExistsByDocumentAsync(
+        string document,
+        CancellationToken cancellationToken = default
+    );
 }

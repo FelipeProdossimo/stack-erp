@@ -1,24 +1,21 @@
-﻿using StackErp.Domain.Common;
+﻿namespace StackErp.Domain.Companies;
 
-namespace StackErp.Domain.Entities;
-
-public class Company : Entity
+public sealed class Company
 {
+    public Guid Id { get; private set; }
     public string Name { get; private set; }
     public string Document { get; private set; }
     public bool Active { get; private set; }
+    public DateTime CreatedAt { get; private set; }
 
-    protected Company() { }
+    private Company() { }
 
     public Company(string name, string document)
     {
+        Id = Guid.NewGuid();
         Name = name;
         Document = document;
         Active = true;
-    }
-
-    public void Deactivate()
-    {
-        Active = false;
+        CreatedAt = DateTime.UtcNow;
     }
 }
