@@ -2,7 +2,7 @@
 
 namespace StackErp.Application.Companies.Create;
 
-public sealed class CreateCompanyHandler
+public sealed class CreateCompanyHandler : ICreateCompanyUseCase
 {
     private readonly ICompanyRepository _repository;
 
@@ -11,9 +11,9 @@ public sealed class CreateCompanyHandler
         _repository = repository;
     }
 
-    public async Task<CreateCompanyResult> Handle(
+    public async Task<CreateCompanyResult> ExecuteAsync(
         CreateCompanyCommand command,
-        CancellationToken cancellationToken)
+        CancellationToken cancellationToken = default)
     {
         var documentAlreadyExists =
             await _repository.ExistsByDocumentAsync(command.Document, cancellationToken);
@@ -23,7 +23,7 @@ public sealed class CreateCompanyHandler
 
         var company = new Company(command.Name, command.Document);
 
-        await _repository.CreateAsync(company, cancellationToken);
+        await _repository.AddAsync(company, cancellationToken);
 
         return new CreateCompanyResult(
             company.Id,
