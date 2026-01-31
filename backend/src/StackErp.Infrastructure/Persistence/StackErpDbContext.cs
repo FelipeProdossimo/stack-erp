@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using StackErp.Domain.Companies;
+using StackErp.Domain.Products;
 
 namespace StackErp.Infrastructure.Persistence;
 
@@ -11,6 +12,7 @@ public class StackErpDbContext : DbContext
     }
 
     public DbSet<Company> Companies => Set<Company>();
+    public DbSet<Product> Products => Set<Product>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

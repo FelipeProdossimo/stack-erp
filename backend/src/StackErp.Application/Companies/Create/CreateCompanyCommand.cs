@@ -1,6 +1,6 @@
-﻿namespace StackErp.Application.Companies.Create;
+﻿using MediatR;
 
-public sealed record CreateCompanyCommand(
-    string Name,
-    string Document
-);
+namespace StackErp.Application.Companies.Create
+{
+    public sealed record CreateCompanyCommand(string Name, string Document) : IRequest<CreateCompanyResult>;
+}

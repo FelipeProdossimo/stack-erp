@@ -1,8 +1,9 @@
-﻿using StackErp.Domain.Companies;
+﻿using MediatR;
+using StackErp.Domain.Companies;
 
 namespace StackErp.Application.Companies.Create;
 
-public sealed class CreateCompanyHandler : ICreateCompanyUseCase
+public sealed class CreateCompanyHandler : IRequestHandler<CreateCompanyCommand, CreateCompanyResult>
 {
     private readonly ICompanyRepository _repository;
 
@@ -11,7 +12,7 @@ public sealed class CreateCompanyHandler : ICreateCompanyUseCase
         _repository = repository;
     }
 
-    public async Task<CreateCompanyResult> ExecuteAsync(
+    public async Task<CreateCompanyResult> Handle(
         CreateCompanyCommand command,
         CancellationToken cancellationToken = default)
     {
